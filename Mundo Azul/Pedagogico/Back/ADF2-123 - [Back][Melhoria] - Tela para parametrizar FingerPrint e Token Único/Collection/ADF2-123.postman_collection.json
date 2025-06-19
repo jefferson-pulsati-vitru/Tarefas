@@ -1,0 +1,1283 @@
+{
+	"info": {
+		"_postman_id": "dc56a58c-6e35-46be-9faa-08b3990f6c6d",
+		"name": "Pedagógico",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "18842067",
+		"_collection_link": "https://jefferson-2ijbqz4sk7qok.postman.co/workspace/UNICESUMAR~d4217c8e-5210-4281-bc7c-370c112589ea/collection/18842067-dc56a58c-6e35-46be-9faa-08b3990f6c6d?action=share&source=collection_link&creator=18842067"
+	},
+	"item": [
+		{
+			"name": "Provas Copy",
+			"item": [
+				{
+					"name": "GET",
+					"item": [
+						{
+							"name": "Cenário 01 - Listar All",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "{{access_token}}"
+									}
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json, text/plain, */*"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/mundoazul-api-studeo/api/polo/fingerprint?page=0&size=10",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"mundoazul-api-studeo",
+										"api",
+										"polo",
+										"fingerprint"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "0"
+										},
+										{
+											"key": "size",
+											"value": "10"
+										},
+										{
+											"key": "idPoloMundoAzul",
+											"value": "576",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Cenário 02 - Buscar por Polo sem filtro aplicado",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "{{access_token}}"
+									}
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json, text/plain, */*"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/mundoazul-api-studeo/api/polo/fingerprint?page=0&size=10&idPoloMundoAzul=576",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"mundoazul-api-studeo",
+										"api",
+										"polo",
+										"fingerprint"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "0"
+										},
+										{
+											"key": "size",
+											"value": "10"
+										},
+										{
+											"key": "idPoloMundoAzul",
+											"value": "576"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Cenário 03 - Buscar por todos com  fingerprint inativo",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"const baseUrl = pm.environment.get('baseUrl');\r",
+											"const originUrl = pm.environment.get('originUrl');\r",
+											"const accessToken = pm.environment.get('access_token');\r",
+											"\r",
+											"if (!baseUrl) {\r",
+											"    console.error(\"❌ Variável 'baseUrl' não definida.\");\r",
+											"    return;\r",
+											"}\r",
+											"if (!accessToken) {\r",
+											"    console.error(\"❌ Variável 'access_token' não definida.\");\r",
+											"    return;\r",
+											"}\r",
+											"\r",
+											"const requestOptions = {\r",
+											"    url: baseUrl + '/mundoazul-api-studeo/api/polo/fingerprint',\r",
+											"    method: 'POST',\r",
+											"    header: [\r",
+											"        { key: 'Accept', value: 'application/json, text/plain, */*' },\r",
+											"        { key: 'Authorization', value: 'Bearer ' + accessToken },\r",
+											"        { key: 'Content-Type', value: 'application/json' },\r",
+											"        { key: 'Origin', value: originUrl },\r",
+											"        { key: 'Referer', value: originUrl + '/' }\r",
+											"    ],\r",
+											"    body: {\r",
+											"        mode: 'raw',\r",
+											"        raw: JSON.stringify({\r",
+											"            idPolo: 1396,\r",
+											"            flBloqueiaFingerPrint: false\r",
+											"        })\r",
+											"    }\r",
+											"};\r",
+											"\r",
+											"pm.sendRequest(requestOptions, function (err, res) {\r",
+											"    if (err) {\r",
+											"        console.error(\"❌ Erro na requisição fingerprint:\", err);\r",
+											"        return;\r",
+											"    }\r",
+											"    console.log(\"Resposta fingerprint:\", res.status, res.text());\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "{{access_token}}"
+									}
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json, text/plain, */*"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/mundoazul-api-studeo/api/polo/fingerprint?page=0&size=10&flBloqueiaFingerPrint=false",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"mundoazul-api-studeo",
+										"api",
+										"polo",
+										"fingerprint"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "0"
+										},
+										{
+											"key": "size",
+											"value": "10"
+										},
+										{
+											"key": "flBloqueiaFingerPrint",
+											"value": "false"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Cenário 04 - Buscar por todos com fingerprint ativo",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"const baseUrl = pm.environment.get('baseUrl');\r",
+											"const originUrl = pm.environment.get('originUrl');\r",
+											"const accessToken = pm.environment.get('access_token');\r",
+											"\r",
+											"if (!baseUrl) {\r",
+											"    console.error(\"❌ Variável 'baseUrl' não definida.\");\r",
+											"    return;\r",
+											"}\r",
+											"if (!accessToken) {\r",
+											"    console.error(\"❌ Variável 'access_token' não definida.\");\r",
+											"    return;\r",
+											"}\r",
+											"\r",
+											"const requestOptions = {\r",
+											"    url: baseUrl + '/mundoazul-api-studeo/api/polo/fingerprint',\r",
+											"    method: 'POST',\r",
+											"    header: [\r",
+											"        { key: 'Accept', value: 'application/json, text/plain, */*' },\r",
+											"        { key: 'Authorization', value: 'Bearer ' + accessToken },\r",
+											"        { key: 'Content-Type', value: 'application/json' },\r",
+											"        { key: 'Origin', value: originUrl },\r",
+											"        { key: 'Referer', value: originUrl + '/' }\r",
+											"    ],\r",
+											"    body: {\r",
+											"        mode: 'raw',\r",
+											"        raw: JSON.stringify({\r",
+											"            idPolo: 867,\r",
+											"            flBloqueiaFingerPrint: true\r",
+											"        })\r",
+											"    }\r",
+											"};\r",
+											"\r",
+											"pm.sendRequest(requestOptions, function (err, res) {\r",
+											"    if (err) {\r",
+											"        console.error(\"❌ Erro na requisição fingerprint:\", err);\r",
+											"        return;\r",
+											"    }\r",
+											"    console.log(\"Resposta fingerprint:\", res.status, res.text());\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "{{access_token}}"
+									}
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json, text/plain, */*"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/mundoazul-api-studeo/api/polo/fingerprint?page=0&size=10&flBloqueiaFingerPrint=false",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"mundoazul-api-studeo",
+										"api",
+										"polo",
+										"fingerprint"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "0"
+										},
+										{
+											"key": "size",
+											"value": "10"
+										},
+										{
+											"key": "flBloqueiaFingerPrint",
+											"value": "false"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Cenário 05 - Buscar por todos com token único ativo",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"const baseUrl = pm.environment.get('baseUrl');\r",
+											"const originUrl = pm.environment.get('originUrl');\r",
+											"const accessToken = pm.environment.get('access_token');\r",
+											"\r",
+											"if (!baseUrl) {\r",
+											"    console.error(\"❌ Variável 'baseUrl' não definida.\");\r",
+											"    return;\r",
+											"}\r",
+											"if (!accessToken) {\r",
+											"    console.error(\"❌ Variável 'access_token' não definida.\");\r",
+											"    return;\r",
+											"}\r",
+											"\r",
+											"const requestOptions = {\r",
+											"    url: baseUrl + '/mundoazul-api-studeo/api/polo/token-unico',\r",
+											"    method: 'POST',\r",
+											"    header: [\r",
+											"        { key: 'Accept', value: 'application/json, text/plain, */*' },\r",
+											"        { key: 'Authorization', value: 'Bearer ' + accessToken },\r",
+											"        { key: 'Content-Type', value: 'application/json' },\r",
+											"        { key: 'Origin', value: originUrl },\r",
+											"        { key: 'Referer', value: originUrl + '/' }\r",
+											"    ],\r",
+											"    body: {\r",
+											"        mode: 'raw',\r",
+											"        raw: JSON.stringify({\r",
+											"            idPolo: 1396,\r",
+											"            flBloqueiaTokenUnico: true\r",
+											"        })\r",
+											"    }\r",
+											"};\r",
+											"\r",
+											"pm.sendRequest(requestOptions, function (err, res) {\r",
+											"    if (err) {\r",
+											"        console.error(\"❌ Erro na requisição fingerprint:\", err);\r",
+											"        return;\r",
+											"    }\r",
+											"    console.log(\"Resposta fingerprint:\", res.status, res.text());\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "{{access_token}}"
+									}
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json, text/plain, */*"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/mundoazul-api-studeo/api/polo/fingerprint?page=0&size=10&flBloqueiaTokenUnico=true",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"mundoazul-api-studeo",
+										"api",
+										"polo",
+										"fingerprint"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "0"
+										},
+										{
+											"key": "size",
+											"value": "10"
+										},
+										{
+											"key": "flBloqueiaTokenUnico",
+											"value": "true"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Cenário 06 - Buscar por todos com token único inativo",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"const baseUrl = pm.environment.get('baseUrl');\r",
+											"const originUrl = pm.environment.get('originUrl');\r",
+											"const accessToken = pm.environment.get('access_token');\r",
+											"\r",
+											"if (!baseUrl) {\r",
+											"    console.error(\"❌ Variável 'baseUrl' não definida.\");\r",
+											"    return;\r",
+											"}\r",
+											"if (!accessToken) {\r",
+											"    console.error(\"❌ Variável 'access_token' não definida.\");\r",
+											"    return;\r",
+											"}\r",
+											"\r",
+											"const requestOptions = {\r",
+											"    url: baseUrl + '/mundoazul-api-studeo/api/polo/token-unico',\r",
+											"    method: 'POST',\r",
+											"    header: [\r",
+											"        { key: 'Accept', value: 'application/json, text/plain, */*' },\r",
+											"        { key: 'Authorization', value: 'Bearer ' + accessToken },\r",
+											"        { key: 'Content-Type', value: 'application/json' },\r",
+											"        { key: 'Origin', value: originUrl },\r",
+											"        { key: 'Referer', value: originUrl + '/' }\r",
+											"    ],\r",
+											"    body: {\r",
+											"        mode: 'raw',\r",
+											"        raw: JSON.stringify({\r",
+											"            idPolo: 1360,\r",
+											"            flBloqueiaTokenUnico: false\r",
+											"        })\r",
+											"    }\r",
+											"};\r",
+											"\r",
+											"pm.sendRequest(requestOptions, function (err, res) {\r",
+											"    if (err) {\r",
+											"        console.error(\"❌ Erro na requisição fingerprint:\", err);\r",
+											"        return;\r",
+											"    }\r",
+											"    console.log(\"Resposta fingerprint:\", res.status, res.text());\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "{{access_token}}"
+									}
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json, text/plain, */*"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/mundoazul-api-studeo/api/polo/fingerprint?page=0&size=10&flBloqueiaTokenUnico=false",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"mundoazul-api-studeo",
+										"api",
+										"polo",
+										"fingerprint"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "0"
+										},
+										{
+											"key": "size",
+											"value": "10"
+										},
+										{
+											"key": "flBloqueiaTokenUnico",
+											"value": "false"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Cenário 07 - Buscar por todos com token único e fingerprint inativos",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"const baseUrl = pm.environment.get('baseUrl');\r",
+											"const originUrl = pm.environment.get('originUrl');\r",
+											"const accessToken = pm.environment.get('access_token');\r",
+											"\r",
+											"// Verifica se variáveis necessárias estão definidas\r",
+											"if (!baseUrl || !accessToken) {\r",
+											"    console.error(\"❌ Variável 'baseUrl' ou 'access_token' não definida.\");\r",
+											"    return;\r",
+											"}\r",
+											"\r",
+											"// Primeira requisição: /token-unico\r",
+											"const tokenUnicoRequest = {\r",
+											"    url: baseUrl + '/mundoazul-api-studeo/api/polo/token-unico',\r",
+											"    method: 'POST',\r",
+											"    header: [\r",
+											"        { key: 'Accept', value: 'application/json, text/plain, */*' },\r",
+											"        { key: 'Authorization', value: 'Bearer ' + accessToken },\r",
+											"        { key: 'Content-Type', value: 'application/json' },\r",
+											"        { key: 'Origin', value: originUrl },\r",
+											"        { key: 'Referer', value: originUrl + '/' }\r",
+											"    ],\r",
+											"    body: {\r",
+											"        mode: 'raw',\r",
+											"        raw: JSON.stringify({\r",
+											"            idPolo: 1176,\r",
+											"            flBloqueiaTokenUnico: true\r",
+											"        })\r",
+											"    }\r",
+											"};\r",
+											"\r",
+											"// Segunda requisição: /fingerprint\r",
+											"const fingerprintRequest = {\r",
+											"    url: baseUrl + '/mundoazul-api-studeo/api/polo/fingerprint',\r",
+											"    method: 'POST',\r",
+											"    header: [\r",
+											"        { key: 'Accept', value: 'application/json, text/plain, */*' },\r",
+											"        { key: 'Authorization', value: 'Bearer ' + accessToken },\r",
+											"        { key: 'Content-Type', value: 'application/json' },\r",
+											"        { key: 'Origin', value: originUrl },\r",
+											"        { key: 'Referer', value: originUrl + '/' }\r",
+											"    ],\r",
+											"    body: {\r",
+											"        mode: 'raw',\r",
+											"        raw: JSON.stringify({\r",
+											"            idPolo: 1176,\r",
+											"            flBloqueiaFingerPrint: false\r",
+											"        })\r",
+											"    }\r",
+											"};\r",
+											"\r",
+											"// Executa a primeira requisição e, na sequência, a segunda\r",
+											"pm.sendRequest(tokenUnicoRequest, function (err1, res1) {\r",
+											"    if (err1 || res1.code >= 400) {\r",
+											"        console.error(\"❌ Erro na requisição /token-unico:\", err1 || res1.status);\r",
+											"        return;\r",
+											"    }\r",
+											"\r",
+											"    console.log(\"✅ /token-unico OK:\", res1.status);\r",
+											"\r",
+											"    // Após sucesso da primeira, executa a segunda\r",
+											"    pm.sendRequest(fingerprintRequest, function (err2, res2) {\r",
+											"        if (err2 || res2.code >= 400) {\r",
+											"            console.error(\"❌ Erro na requisição /fingerprint:\", err2 || res2.status);\r",
+											"            return;\r",
+											"        }\r",
+											"\r",
+											"        console.log(\"✅ /fingerprint OK:\", res2.status);\r",
+											"    });\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "{{access_token}}"
+									}
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json, text/plain, */*"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/mundoazul-api-studeo/api/polo/fingerprint?page=0&size=10&flBloqueiaTokenUnico=false&flBloqueiaFingerPrint=false",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"mundoazul-api-studeo",
+										"api",
+										"polo",
+										"fingerprint"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "0"
+										},
+										{
+											"key": "size",
+											"value": "10"
+										},
+										{
+											"key": "flBloqueiaTokenUnico",
+											"value": "false"
+										},
+										{
+											"key": "flBloqueiaFingerPrint",
+											"value": "false"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Cenário 08 - Buscar por todos com token único ativo e fingerprint inativo",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"const baseUrl = pm.environment.get('baseUrl');\r",
+											"const originUrl = pm.environment.get('originUrl');\r",
+											"const accessToken = pm.environment.get('access_token');\r",
+											"\r",
+											"// Verifica se variáveis necessárias estão definidas\r",
+											"if (!baseUrl || !accessToken) {\r",
+											"    console.error(\"❌ Variável 'baseUrl' ou 'access_token' não definida.\");\r",
+											"    return;\r",
+											"}\r",
+											"\r",
+											"// Primeira requisição: /token-unico\r",
+											"const tokenUnicoRequest = {\r",
+											"    url: baseUrl + '/mundoazul-api-studeo/api/polo/token-unico',\r",
+											"    method: 'POST',\r",
+											"    header: [\r",
+											"        { key: 'Accept', value: 'application/json, text/plain, */*' },\r",
+											"        { key: 'Authorization', value: 'Bearer ' + accessToken },\r",
+											"        { key: 'Content-Type', value: 'application/json' },\r",
+											"        { key: 'Origin', value: originUrl },\r",
+											"        { key: 'Referer', value: originUrl + '/' }\r",
+											"    ],\r",
+											"    body: {\r",
+											"        mode: 'raw',\r",
+											"        raw: JSON.stringify({\r",
+											"            idPolo: 1396,\r",
+											"            flBloqueiaTokenUnico: true\r",
+											"        })\r",
+											"    }\r",
+											"};\r",
+											"\r",
+											"// Segunda requisição: /fingerprint\r",
+											"const fingerprintRequest = {\r",
+											"    url: baseUrl + '/mundoazul-api-studeo/api/polo/fingerprint',\r",
+											"    method: 'POST',\r",
+											"    header: [\r",
+											"        { key: 'Accept', value: 'application/json, text/plain, */*' },\r",
+											"        { key: 'Authorization', value: 'Bearer ' + accessToken },\r",
+											"        { key: 'Content-Type', value: 'application/json' },\r",
+											"        { key: 'Origin', value: originUrl },\r",
+											"        { key: 'Referer', value: originUrl + '/' }\r",
+											"    ],\r",
+											"    body: {\r",
+											"        mode: 'raw',\r",
+											"        raw: JSON.stringify({\r",
+											"            idPolo: 1396,\r",
+											"            flBloqueiaFingerPrint: false\r",
+											"        })\r",
+											"    }\r",
+											"};\r",
+											"\r",
+											"// Executa a primeira requisição e, na sequência, a segunda\r",
+											"pm.sendRequest(tokenUnicoRequest, function (err1, res1) {\r",
+											"    if (err1 || res1.code >= 400) {\r",
+											"        console.error(\"❌ Erro na requisição /token-unico:\", err1 || res1.status);\r",
+											"        return;\r",
+											"    }\r",
+											"\r",
+											"    console.log(\"✅ /token-unico OK:\", res1.status);\r",
+											"\r",
+											"    // Após sucesso da primeira, executa a segunda\r",
+											"    pm.sendRequest(fingerprintRequest, function (err2, res2) {\r",
+											"        if (err2 || res2.code >= 400) {\r",
+											"            console.error(\"❌ Erro na requisição /fingerprint:\", err2 || res2.status);\r",
+											"            return;\r",
+											"        }\r",
+											"\r",
+											"        console.log(\"✅ /fingerprint OK:\", res2.status);\r",
+											"    });\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "{{access_token}}"
+									}
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json, text/plain, */*"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/mundoazul-api-studeo/api/polo/fingerprint?page=0&size=10&flBloqueiaTokenUnico=true&flBloqueiaFingerPrint=false",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"mundoazul-api-studeo",
+										"api",
+										"polo",
+										"fingerprint"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "0"
+										},
+										{
+											"key": "size",
+											"value": "10"
+										},
+										{
+											"key": "flBloqueiaTokenUnico",
+											"value": "true"
+										},
+										{
+											"key": "flBloqueiaFingerPrint",
+											"value": "false"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Cenário 09 - Buscar por todos com token único inativo e fingerprint ativo",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"const baseUrl = pm.environment.get('baseUrl');\r",
+											"const originUrl = pm.environment.get('originUrl');\r",
+											"const accessToken = pm.environment.get('access_token');\r",
+											"\r",
+											"// Verifica se variáveis necessárias estão definidas\r",
+											"if (!baseUrl || !accessToken) {\r",
+											"    console.error(\"❌ Variável 'baseUrl' ou 'access_token' não definida.\");\r",
+											"    return;\r",
+											"}\r",
+											"\r",
+											"// Primeira requisição: /token-unico\r",
+											"const tokenUnicoRequest = {\r",
+											"    url: baseUrl + '/mundoazul-api-studeo/api/polo/token-unico',\r",
+											"    method: 'POST',\r",
+											"    header: [\r",
+											"        { key: 'Accept', value: 'application/json, text/plain, */*' },\r",
+											"        { key: 'Authorization', value: 'Bearer ' + accessToken },\r",
+											"        { key: 'Content-Type', value: 'application/json' },\r",
+											"        { key: 'Origin', value: originUrl },\r",
+											"        { key: 'Referer', value: originUrl + '/' }\r",
+											"    ],\r",
+											"    body: {\r",
+											"        mode: 'raw',\r",
+											"        raw: JSON.stringify({\r",
+											"            idPolo: 495,\r",
+											"            flBloqueiaTokenUnico: false\r",
+											"        })\r",
+											"    }\r",
+											"};\r",
+											"\r",
+											"// Segunda requisição: /fingerprint\r",
+											"const fingerprintRequest = {\r",
+											"    url: baseUrl + '/mundoazul-api-studeo/api/polo/fingerprint',\r",
+											"    method: 'POST',\r",
+											"    header: [\r",
+											"        { key: 'Accept', value: 'application/json, text/plain, */*' },\r",
+											"        { key: 'Authorization', value: 'Bearer ' + accessToken },\r",
+											"        { key: 'Content-Type', value: 'application/json' },\r",
+											"        { key: 'Origin', value: originUrl },\r",
+											"        { key: 'Referer', value: originUrl + '/' }\r",
+											"    ],\r",
+											"    body: {\r",
+											"        mode: 'raw',\r",
+											"        raw: JSON.stringify({\r",
+											"            idPolo: 495,\r",
+											"            flBloqueiaFingerPrint: true\r",
+											"        })\r",
+											"    }\r",
+											"};\r",
+											"\r",
+											"// Executa a primeira requisição e, na sequência, a segunda\r",
+											"pm.sendRequest(tokenUnicoRequest, function (err1, res1) {\r",
+											"    if (err1 || res1.code >= 400) {\r",
+											"        console.error(\"❌ Erro na requisição /token-unico:\", err1 || res1.status);\r",
+											"        return;\r",
+											"    }\r",
+											"\r",
+											"    console.log(\"✅ /token-unico OK:\", res1.status);\r",
+											"\r",
+											"    // Após sucesso da primeira, executa a segunda\r",
+											"    pm.sendRequest(fingerprintRequest, function (err2, res2) {\r",
+											"        if (err2 || res2.code >= 400) {\r",
+											"            console.error(\"❌ Erro na requisição /fingerprint:\", err2 || res2.status);\r",
+											"            return;\r",
+											"        }\r",
+											"\r",
+											"        console.log(\"✅ /fingerprint OK:\", res2.status);\r",
+											"    });\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "{{access_token}}"
+									}
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json, text/plain, */*"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/mundoazul-api-studeo/api/polo/fingerprint?page=0&size=10&flBloqueiaTokenUnico=false&flBloqueiaFingerPrint=true",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"mundoazul-api-studeo",
+										"api",
+										"polo",
+										"fingerprint"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "0"
+										},
+										{
+											"key": "size",
+											"value": "10"
+										},
+										{
+											"key": "flBloqueiaTokenUnico",
+											"value": "false"
+										},
+										{
+											"key": "flBloqueiaFingerPrint",
+											"value": "true"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"packages": {},
+								"exec": [
+									"const loginRequest = {",
+									"    url: pm.environment.get(\"baseUrl\") + '/mundoazul-api-controle-acesso/oauth/token',",
+									"    method: 'POST',",
+									"    header: [",
+									"        { key: 'Authorization', value: 'Basic TVVORE9fQVpVTDplbXRlcnJhZGVzYWNpcXVlbXRlbTFvbGhvZXJlaUB1bmljZXN1bWFyLmVkdS5icg==' },",
+									"        { key: 'Content-Type', value: 'application/x-www-form-urlencoded' }",
+									"    ],",
+									"    body: {",
+									"        mode: 'urlencoded',",
+									"        urlencoded: [",
+									"            {key: \"username\", value: pm.environment.get(\"username\")},",
+									"            {key: \"password\", value: pm.environment.get(\"password\")},",
+									"            {key: \"grant_type\", value: \"password\"}",
+									"        ]",
+									"    }",
+									"};",
+									"",
+									"pm.sendRequest(loginRequest, (err, response) => {",
+									"    if (err) {",
+									"        console.log(err);",
+									"    } else {",
+									"        if (response.code === 200) {",
+									"            var json = response.json();",
+									"            pm.environment.set(\"access_token\", json.access_token);",
+									"            console.log('✅ Token salvo com sucesso para a pasta.');",
+									"        } else {",
+									"            console.log('❌ Falha ao obter token: ' + response.status);",
+									"            console.log(response.text());",
+									"        }",
+									"    }",
+									"});"
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"packages": {},
+								"exec": [
+									"pm.test(\"GET: Status code é 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"GET: Response retornou em menos de 3s\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(3000);\r",
+									"});\r",
+									""
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "POST",
+					"item": [
+						{
+							"name": "Cenário 01 - Ativar Fingerprint de um polo",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "{{access_token}}"
+									}
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json, text/plain, */*"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"idPolo\": 1396,\r\n    \"flBloqueiaFingerPrint\": true\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{baseUrl}}/mundoazul-api-studeo/api/polo/fingerprint"
+							},
+							"response": []
+						},
+						{
+							"name": "Cenário 02 - Ativar Token ùnico de um polo",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "{{access_token}}"
+									}
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json, text/plain, */*"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"idPolo\": 1396,\r\n    \"flBloqueiaTokenUnico\": true\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{baseUrl}}/mundoazul-api-studeo/api/polo/token-unico/"
+							},
+							"response": []
+						},
+						{
+							"name": "Cenário 03 - Inativar Fingerprint de um polo",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "{{access_token}}"
+									}
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json, text/plain, */*"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"idPolo\": 1711,\r\n    \"flBloqueiaFingerPrint\": false\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{baseUrl}}/mundoazul-api-studeo/api/polo/fingerprint"
+							},
+							"response": []
+						},
+						{
+							"name": "Cenário 04 - Inativar Token ùnico de um polo",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "{{access_token}}"
+									}
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json, text/plain, */*"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"idPolo\": 1711,\r\n    \"flBloqueiaTokenUnico\": false\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{baseUrl}}/mundoazul-api-studeo/api/polo/token-unico"
+							},
+							"response": []
+						},
+						{
+							"name": "Cenário 05 - Ativar o fingerprint de todos os polos",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "{{access_token}}"
+									}
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json, text/plain, */*"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{baseUrl}}/mundoazul-api-studeo/api/polo/fingerprint/active-all"
+							},
+							"response": []
+						},
+						{
+							"name": "Cenário 06 - Inativar o fingerprint de todos os polos",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "{{access_token}}"
+									}
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json, text/plain, */*"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{baseUrl}}/mundoazul-api-studeo/api/polo/fingerprint/deactive-all"
+							},
+							"response": []
+						},
+						{
+							"name": "Cenário 07 - Ativar o token único de todos os polos",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "{{access_token}}"
+									}
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json, text/plain, */*"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{baseUrl}}/mundoazul-api-studeo/api/polo/token-unico/deactive-all"
+							},
+							"response": []
+						},
+						{
+							"name": "Cenário 08 - Inativar o token único de todos os polos",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "{{access_token}}"
+									}
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json, text/plain, */*"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{baseUrl}}/mundoazul-api-studeo/api/polo/token-unico/deactive-all"
+							},
+							"response": []
+						}
+					],
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"packages": {},
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"packages": {},
+								"exec": [
+									"pm.test(\"POST: Status code é 202\", function () {\r",
+									"    pm.response.to.have.status(202);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"POST: Response retornou em menos de 3s\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(3000);\r",
+									"});\r",
+									""
+								]
+							}
+						}
+					]
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": {
+					"token": "{{access_token}}"
+				}
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		}
+	]
+}
