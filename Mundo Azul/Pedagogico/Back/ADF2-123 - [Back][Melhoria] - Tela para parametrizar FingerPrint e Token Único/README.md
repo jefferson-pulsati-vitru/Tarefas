@@ -51,9 +51,28 @@ Para que os testes executem com sucesso, **você precisa preencher esses campos 
 -   `POST → /mundoazul-api-studeo/api/polo/token-unico/`
 
 ## 📊 Cenários de Teste
-A suíte de testes é composta por um total de 17 cenários:
--   **GET:** 9 cenários
--   **POST:** 8 cenários
+A suíte de testes é composta por um total de 17 cenários, divididos da seguinte forma:
+
+### Método GET (9 cenários)
+- **Cenário 01:** Listar todos (Sem filtro aplicado)
+- **Cenário 02:** Buscar por Polo sem filtro aplicado
+- **Cenário 03:** Buscar por todos com fingerprint inativo
+- **Cenário 04:** Buscar por todos com fingerprint ativo
+- **Cenário 05:** Buscar por todos com token único ativo
+- **Cenário 06:** Buscar por todos com token único inativo
+- **Cenário 07:** Buscar por todos com token único e fingerprint inativos
+- **Cenário 08:** Buscar por todos com token único ativo e fingerprint inativo
+- **Cenário 09:** Buscar por todos com token único inativo e fingerprint ativo
+
+### Método POST (8 cenários)
+- **Cenário 01:** Ativar Fingerprint de um polo
+- **Cenário 02:** Ativar Token único de um polo
+- **Cenário 03:** Inativar Fingerprint de um polo
+- **Cenário 04:** Inativar Token único de um polo
+- **Cenário 05:** Ativar o fingerprint de todos os polos
+- **Cenário 06:** Inativar o fingerprint de todos os polos
+- **Cenário 07:** Ativar o token único de todos os polos
+- **Cenário 08:** Inativar o token único de todos os polos
 
 ## ✅ Principais Validações
 
